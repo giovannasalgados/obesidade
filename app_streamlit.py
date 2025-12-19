@@ -83,7 +83,8 @@ if st.button("🔍 Realizar Predição"):
         # Garante que tratamos como inteiro ou string conforme o modelo retorna
         # Se o modelo retorna números, o mapa fica assim:
         resultado_map = {
-            "0 - Código 0" : "Abaixo do Peso",
+           "0 - Código 0" : "Abaixo do Peso",
+            "5 - Código 5" : "Sobrepeso",
             1: "Peso Normal",
             2: "Obesidade Grau I",
             3: "Obesidade Grau II",
