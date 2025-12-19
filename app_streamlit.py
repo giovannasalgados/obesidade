@@ -38,7 +38,7 @@ with col1:
     height = st.slider("Altura (m)", 1.45, 1.98, 1.70)
     
 with col2:
-    weight = st.slider("Peso (kg)", 39.0, 173.0, 70.0)
+    weight = st.slider("Peso (kg)", min_value=10.0, max_value=250.0, value=70.0, step=0.5)
     faf_labels = {0: "Sedentário", 1: "Baixa", 2: "Moderada", 3: "Alta"}
     faf = st.selectbox("Atividade Física", options=[0, 1, 2, 3], format_func=lambda x: faf_labels[x])
 
@@ -77,11 +77,27 @@ if st.button("🔍 Realizar Predição"):
     input_df = input_df[col_order]
 
     try:
-        prediction = model.predict(input_df)[0]
+        # 5. Executa a predição (retorna 1, 2, 3 ou 4)
+        prediction_raw = model.predict(input_df)[0]
+        
+        # Garante que tratamos como inteiro ou string conforme o modelo retorna
+        # Se o modelo retorna números, o mapa fica assim:
+        resultado_map = {
+            1: "Peso Normal",
+            2: "Obesidade Grau I",
+            3: "Obesidade Grau II",
+            4: "Obesidade Grau III"
+        }
+
+        # Busca a descrição amigável
+        label_resultado = resultado_map.get(prediction_raw, f"Código {prediction_raw}")
         
         st.markdown("---")
-        st.success(f"📊 Nível de Obesidade Previsto: **{prediction}**")
-        st.info(f"💡 Seu IMC calculado é: **{imc_calculado:.2f}**")
+        st.subheader("Resultado da Análise:")
+        
+        # Exibe o número e a descrição
+        st.success(f"Nível de Obesidade Previsto: **{prediction_raw} - {label_resultado}**")
+        st.info(f"IMC Calculado: **{imc_calculado:.2f}**")
         
     except Exception as e:
-        st.error(f"Erro na predição. Verifique se as colunas do modelo batem com o arquivo CSV: {e}")
+        st.error(f"Erro na predição: {e}")
