@@ -34,8 +34,8 @@ col1, col2 = st.columns(2)
 
 with col1:
     gender_pt = st.selectbox("Gênero", ["Masculino", "Feminino"])
-    age = st.slider("Idade", 14, 61, 25)
-    height = st.slider("Altura (m)", 1.45, 1.98, 1.70)
+    age = st.slider("Idade", 14, 100, 25)
+    height = st.slider("Altura (m)", 1.45, 2.20, 1.70)
     
 with col2:
     weight = st.slider("Peso (kg)", min_value=10.0, max_value=250.0, value=70.0, step=0.5)
