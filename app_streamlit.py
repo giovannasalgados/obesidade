@@ -98,7 +98,7 @@ if st.button("🔍 Realizar Predição"):
         st.subheader("Resultado da Análise:")
         
         # Exibe o número e a descrição
-        st.success(f"Nível de Obesidade Previsto: **{{prediction_raw} - label_resultado}**")
+        st.success(f"Nível de Obesidade Previsto: **{prediction_raw} - {label_resultado}**")
         st.info(f"IMC Calculado: **{imc_calculado:.2f}**")
         
     except Exception as e:
