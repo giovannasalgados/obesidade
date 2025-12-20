@@ -83,8 +83,8 @@ if st.button("🔍 Realizar Predição"):
         # Garante que tratamos como inteiro ou string conforme o modelo retorna
         # Se o modelo retorna números, o mapa fica assim:
         resultado_map = {
-           "0 - Código 0" : "Abaixo do Peso",
-            "5 - Código 5" : "Sobrepeso",
+            "0 - Código 0": "Abaixo do Peso",
+            "5 - Código 5": "Sobrepeso",
             1: "Peso Normal",
             2: "Obesidade Grau I",
             3: "Obesidade Grau II",
@@ -98,7 +98,7 @@ if st.button("🔍 Realizar Predição"):
         st.subheader("Resultado da Análise:")
         
         # Exibe o número e a descrição
-        st.success(f"Nível de Obesidade Previsto: **{prediction_raw} - {label_resultado}**")
+        st.success(f"Nível de Obesidade Previsto: **{label_resultado}**")
         st.info(f"IMC Calculado: **{imc_calculado:.2f}**")
         
     except Exception as e:
